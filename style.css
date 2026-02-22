@@ -1,0 +1,880 @@
+/* --- CSS Variables / Design System --- */
+:root {
+    --bg-dark: #0f172a;
+    --bg-darker: #020617;
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --secondary: #ec4899;
+    --success: #10b981;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --text-white: #f8fafc;
+    --text-gray: #cbd5e1;
+    --glass-bg: rgba(30, 41, 59, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+
+    --font-main: 'Inter', sans-serif;
+    --font-heading: 'Outfit', sans-serif;
+}
+
+/* --- Base Reset --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background: radial-gradient(circle at top right, #1e1b4b, var(--bg-dark), var(--bg-darker));
+    color: var(--text-white);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* --- Typography --- */
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-success {
+    color: var(--success);
+}
+
+.text-danger {
+    color: var(--danger);
+}
+
+.text-warning {
+    color: var(--warning);
+}
+
+.mt-xs {
+    margin-top: 0.5rem;
+}
+
+.mt-sm {
+    margin-top: 1rem;
+}
+
+.mt-lg {
+    margin-top: 2rem;
+}
+
+.mt-xl {
+    margin-top: 3rem;
+}
+
+/* --- Layout Utilities --- */
+.app-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    min-height: 100vh;
+}
+
+.screen {
+    display: none;
+    width: 100%;
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+.screen.active {
+    display: block;
+}
+
+/* --- Components --- */
+
+/* Glassmorphism Panel */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Buttons */
+.btn {
+    font-family: var(--font-heading);
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Inputs */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: left;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+}
+
+.form-group input {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    padding: 0.75rem 1rem;
+    color: var(--text-white);
+    font-size: 1rem;
+    font-family: var(--font-main);
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+    border-color: var(--primary);
+}
+
+/* Progress Bars */
+.progress-bar-container {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 99px;
+    height: 8px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.progress-bar-container.lg {
+    height: 12px;
+}
+
+.progress-bar {
+    height: 100%;
+    border-radius: 99px;
+    transition: width 0.3s ease;
+}
+
+.fill-energy {
+    background: var(--warning);
+    box-shadow: 0 0 10px var(--warning);
+}
+
+.fill-stress {
+    background: var(--danger);
+    box-shadow: 0 0 10px var(--danger);
+}
+
+.fill-exp {
+    background: var(--primary);
+    box-shadow: 0 0 10px var(--primary);
+}
+
+/* --- Screen 1: Character Creation --- */
+#screen-character-creation .glass-panel {
+    max-width: 600px;
+    margin: 4rem auto 0;
+}
+
+.logo-text {
+    font-size: 3rem;
+    background: linear-gradient(135deg, #a855f7, #6366f1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.avatar-selector {
+    text-align: center;
+}
+
+.avatars {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.avatar-option {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.avatar-option:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.avatar-option.selected {
+    border-color: var(--primary);
+    background: rgba(99, 102, 241, 0.2);
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+}
+
+/* --- Screen 2: Career Selection --- */
+.careers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.career-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.career-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.2);
+}
+
+.career-card i {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.career-card h3 {
+    margin-bottom: 0.5rem;
+}
+
+.career-card p {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    margin-bottom: 1rem;
+}
+
+/* --- Screen 3: Dashboard Layout --- */
+.dashboard-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 2rem;
+}
+
+.sidebar {
+    padding: 1.5rem;
+}
+
+.player-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    border: 3px solid var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+}
+
+.badge {
+    background: rgba(99, 102, 241, 0.2);
+    color: var(--primary);
+    padding: 0.2rem 0.6rem;
+    border-radius: 99px;
+    font-size: 0.8rem;
+    display: inline-block;
+    margin-top: 0.5rem;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.resource-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+    padding: 0.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius-sm);
+}
+
+.res-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.res-icon.money {
+    background: rgba(16, 185, 129, 0.2);
+    color: var(--success);
+}
+
+.res-icon.energy {
+    background: rgba(245, 158, 11, 0.2);
+    color: var(--warning);
+}
+
+.res-icon.time {
+    background: rgba(99, 102, 241, 0.2);
+    color: var(--primary);
+}
+
+.res-icon.stress {
+    background: rgba(239, 68, 68, 0.2);
+    color: var(--danger);
+}
+
+.res-info {
+    flex: 1;
+}
+
+.res-label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-gray);
+    margin-bottom: 0.2rem;
+}
+
+.res-value {
+    font-weight: 700;
+    font-family: var(--font-heading);
+}
+
+.res-value.small {
+    font-size: 0.75rem;
+    font-weight: 400;
+    margin-top: 0.2rem;
+    display: block;
+    text-align: right;
+}
+
+/* Actions Board */
+.actions-board {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.action-card {
+    padding: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.action-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.action-card:hover {
+    transform: translateY(-5px);
+}
+
+.action-card:hover::before {
+    opacity: 1;
+}
+
+.action-card.work:hover {
+    box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2);
+    border-color: var(--success);
+}
+
+.action-card.study:hover {
+    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
+    border-color: var(--primary);
+}
+
+.action-card.rest:hover {
+    box-shadow: 0 10px 20px rgba(245, 158, 11, 0.2);
+    border-color: var(--warning);
+}
+
+.action-card.shop:hover {
+    box-shadow: 0 10px 20px rgba(236, 72, 153, 0.2);
+    border-color: var(--secondary);
+}
+
+.ac-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.action-card.work .ac-icon {
+    color: var(--success);
+}
+
+.action-card.study .ac-icon {
+    color: var(--primary);
+}
+
+.action-card.rest .ac-icon {
+    color: var(--warning);
+}
+
+.action-card.shop .ac-icon {
+    color: var(--secondary);
+}
+
+.action-card h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.action-card p {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    margin-bottom: 1rem;
+    min-height: 40px;
+}
+
+.ac-effects {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 0.85rem;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0.5rem;
+    border-radius: var(--radius-sm);
+}
+
+.ac-effects li {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+/* Log Panel */
+.log-panel {
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.log-panel h4 {
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.log-list {
+    list-style: none;
+}
+
+.log-list li {
+    padding: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.9rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+}
+
+.log-list li::before {
+    content: '•';
+    color: var(--primary);
+    font-weight: bold;
+}
+
+/* Career Progress Top Nav */
+.career-progress {
+    width: 100%;
+}
+
+.cp-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.promotion-hint {
+    font-size: 0.8rem;
+    color: var(--text-gray);
+    text-align: right;
+}
+
+/* --- Modals --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-overlay:not(.hidden) {
+    display: flex;
+}
+
+.modal-content {
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.modal-content.large {
+    max-width: 800px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.btn-close {
+    background: transparent;
+    border: none;
+    color: var(--text-gray);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.btn-close:hover {
+    color: var(--text-white);
+}
+
+/* --- Animations --- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.02);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.fade-in-down {
+    animation: fadeInDown 0.6s ease forwards;
+}
+
+.bounce-in {
+    animation: bounceIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+    .dashboard-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+
+    .player-profile {
+        flex: 1;
+        min-width: 200px;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .player-avatar {
+        margin: 0;
+        width: 80px;
+        height: 80px;
+    }
+
+    .resources-container {
+        flex: 2;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .resources-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ── Skills Panel ─────────────────────────────────────── */
+.skills-panel {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+    border: 1px solid var(--glass-border);
+}
+
+.skill-item {
+    margin-bottom: 1rem;
+}
+
+.skill-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    margin-bottom: 0.2rem;
+}
+
+.skill-pts {
+    font-weight: 700;
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    color: var(--text-gray);
+}
+
+/* ── Career Skills Preview (on career selection) ───────── */
+.career-skills-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+.skill-tag {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid var(--glass-border);
+    border-radius: 99px;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.72rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: var(--text-gray);
+}
+
+/* Dashboard sidebar scrollable on tall screens */
+.sidebar {
+    overflow-y: auto;
+    max-height: 100vh;
+    position: sticky;
+    top: 0;
+}
+
+/* ── Quiz Modal ────────────────────────────────────────── */
+.quiz-q {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 0.8rem 1rem;
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--primary);
+}
+
+.quiz-options {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.quiz-opt {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--glass-border);
+    color: var(--text-white);
+    justify-content: flex-start;
+    font-size: 0.9rem;
+    transition: background 0.15s, border-color 0.15s;
+    border-radius: var(--radius-sm);
+}
+
+.quiz-opt:hover:not(:disabled) {
+    background: rgba(99, 102, 241, 0.25);
+    border-color: var(--primary);
+}
+
+.opt-letter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-right: 0.5rem;
+    flex-shrink: 0;
+}
+
+/* ── Shop Items ────────────────────────────────────────── */
+.shop-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.shop-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.2rem;
+}
+
+.shop-icon {
+    font-size: 1.8rem;
+    width: 50px;
+    height: 50px;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--primary);
+}
+
+.shop-info {
+    flex: 1;
+}
+
+.shop-info p {
+    font-size: 0.8rem;
+    color: var(--text-gray);
+    margin-top: 0.2rem;
+}
+
+/* ── Event Modal ───────────────────────────────────────── */
+.event-badge {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+}
+
+/* ── Eval Grid (End game) ──────────────────────────────── */
+.eval-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.eval-box {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+}
+
+.eval-box strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-gray);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* ── Dashboard Layout Full Height ─────────────────────── */
+#screen-dashboard.active {
+    display: grid;
+}
+
+.main-content {
+    overflow-y: auto;
+}
