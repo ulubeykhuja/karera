@@ -123,8 +123,10 @@ function selectCareer(careerId) {
     // Starting money = base junior rate × 5
     state.resources.money = career.baseRates.junior * 5;
 
-    // Init all 4 skills to 0
-    career.skills.forEach(s => { state.player.skills[s.id] = 0; });
+    // Init skills only if they don't exist (to keep skills when changing career after 1 year)
+    career.skills.forEach(s => {
+        if (state.player.skills[s.id] === undefined) state.player.skills[s.id] = 0;
+    });
 
     switchScreen(els.screenCareer, els.screenDash);
     renderSkillsPanel();
@@ -274,7 +276,7 @@ function doWork() {
     state.resources.stress += 5 + Math.random() * 5;
 
     clamp();
-    logActivity(`Ishladingiz! +${earned.toFixed(1)}$ ishlab topdingiz. 💰`, 'success');
+    logActivity(`Ishladingiz! Baza: ${baseRate}$, Skill+Tajriba bonus: +${(earned - baseRate).toFixed(1)}$. Jami: +${earned.toFixed(1)}$ 💰`, 'success');
     advanceTime();
 }
 
@@ -561,7 +563,10 @@ function advanceTime() {
     maybeFireEvent(); // Try to trigger a career event
     updateDashboard();
 
-    if (state.resources.time > 52) endGame();
+    // End game exactly at multiples of 52 weeks (1 year, 2 years, etc)
+    if (state.resources.time > 1 && (state.resources.time - 1) % 52 === 0) {
+        endGame();
+    }
 }
 
 // ── MODALS ───────────────────────────────────────────────
@@ -609,6 +614,20 @@ function endGame() {
     `;
 
     $('modal-evaluation').classList.remove('hidden');
+}
+
+// ── END GAME OPTIONS ─────────────────────────────────────
+function continueGame() {
+    $('modal-evaluation').classList.add('hidden');
+    logActivity(`Ajoyib! Yangi ish yilini boshladingiz. Maqsadlarga sari davom eting!`, 'success');
+}
+
+function changeCareer() {
+    $('modal-evaluation').classList.add('hidden');
+    // Clear old skill panels from DOM
+    els.skillsPanel.innerHTML = '';
+    // Show career screen
+    switchScreen(els.screenDash, els.screenCareer);
 }
 
 // ── BOOT ─────────────────────────────────────────────────

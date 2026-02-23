@@ -219,8 +219,13 @@
                 <div class="modal-body" id="eval-body">
                     <!-- Final stats -->
                 </div>
-                <div class="modal-footer text-center mt-lg">
-                    <button class="btn btn-primary" onclick="location.reload()">Qaytadan boshlash <i
+                <div class="modal-footer text-center mt-lg"
+                    style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
+                    <button class="btn btn-primary" onclick="continueGame()">Davom ettirish (Yilni uzaytirish) <i
+                            class="fa-solid fa-arrow-right"></i></button>
+                    <button class="btn btn-secondary" onclick="changeCareer()">Yangi kasb tanlash (Skill va pul
+                        saqlanadi) <i class="fa-solid fa-briefcase"></i></button>
+                    <button class="btn btn-danger" onclick="location.reload()">Noldan boshlash <i
                             class="fa-solid fa-rotate-right"></i></button>
                 </div>
             </div>
