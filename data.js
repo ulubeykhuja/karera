@@ -125,7 +125,7 @@ const gameData = {
         },
         {
             id: 'psychologist', title: "Psixolog", icon: "fa-solid fa-head-side-brain", color: "#d946ef",
-            description: "Inson his-tuyg'ulari va xulqini o'rganish. Qalblarga "dorivor" bo'lish!",
+            description: "Inson his-tuyg'ulari va xulqini o'rganish. Qalblarga 'dorivor' bo'lish!",
             levels: ["Psixolog-Praktikant", "Psixolog", "Kliniq Psixolog"],
             baseRates: { junior: 9, middle: 24, senior: 58 },
             skills: [
