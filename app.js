@@ -253,14 +253,20 @@ function doWork() {
     const career = getCareer();
     const baseRate = Object.values(career.baseRates)[state.player.levelIndex];
 
-    // Total skill level factor: average skill points / 100
+    // Work experience logic (Har bir ishlaganda ish haqi 1% ga oshib boradi)
+    state.player.workCount = (state.player.workCount || 0) + 1;
+    const expMultiplier = 1 + (state.player.workCount * 0.01);
+
+    // Total skill level factor (Skill oshganda yana daromad oshadi)
     const avgSkill = Object.values(state.player.skills).reduce((a, b) => a + b, 0) / career.skills.length;
     const skillFactor = 1 + (avgSkill / 100);
+
     const discipline = 0.85 + Math.random() * 0.3;
     const energyFactor = state.resources.energy / 100;
     const levelMulti = state.levelMultipliers[state.player.levelIndex];
 
-    const earned = baseRate * skillFactor * discipline * energyFactor * levelMulti;
+    // Earned income completely scales with: base, skill, work experience, player level
+    const earned = baseRate * skillFactor * discipline * energyFactor * levelMulti * expMultiplier;
 
     // ✅ Money INCREASES by earned amount
     state.resources.money += earned;
